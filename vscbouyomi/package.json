@@ -1,0 +1,122 @@
+{
+    "name": "vscbouyomi",
+    "displayName": "VSCBouyomi",
+    "description": "",
+    "version": "0.0.1",
+    "publisher": "xztaityozx",
+    "license": "MIT",
+    "engines": {
+        "vscode": "^1.27.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:vscbouyomi.talk",
+        "onCommand:vscbouyomi.skip",
+        "onCommand:vscbouyomi.pause",
+        "onCommand:vscbouyomi.resume",
+        "onCommand:vscbouyomi.clear"
+    ],
+    "main": "./out/extension",
+    "contributes": {
+        "commands": [
+            {
+                "command": "vscbouyomi.talk",
+                "title": "VSCBouyomi: Talk"
+            },
+            {
+                "command": "vscbouyomi.skip",
+                "title": "VSCBouyomi: Skip"
+            },
+            {
+                "command": "vscbouyomi.pause",
+                "title": "VSCBouyomi: Pause"
+            },
+            {
+                "command": "vscbouyomi.resume",
+                "title": "VSCBouyomi: Resume"
+            },
+            {
+                "command": "vscbouyomi.clear",
+                "title": "VSCBouyomi: Clear"
+            }
+        ],
+        "menus": {
+            "editor/context": [
+                {
+                    "when": "editorTextFocus",
+                    "group": "VSCBouyomi",
+                    "command": "vscbouyomi.talk"
+                }
+            ]
+        },
+        "configuration": [
+            {
+                "title": "VSCBouyomi Configurations",
+                "type": "object",
+                "properties": {
+                    "vscbouyomi.voice": {
+                        "type": "number",
+                        "default": 0,
+                        "description": "棒読みちゃんの声(default: 0)"
+                    },
+                    "vscbouyomi.tone": {
+                        "type": "number",
+                        "default": -1,
+                        "description": "棒読みちゃんの音程(default: -1)"
+                    },
+                    "vscbouyomi.speed": {
+                        "type": "number",
+                        "default": -1,
+                        "description": "棒読みちゃんの速さ(default: -1)"
+                    },
+                    "vscbouyomi.volume": {
+                        "type": "number",
+                        "default": -1,
+                        "description": "棒読みちゃんの音量(default: -1)"
+                    },
+                    "vscbouyomi.delimitor": {
+                        "type": "array",
+                        "default": [
+                            "\n"
+                        ],
+                        "description": "文章の区切り文字です(default: \\n)"
+                    },
+                    "vscboiyomi.encoding":{
+                        "type":"string",
+                        "enum":[
+                            "utf-8",
+                            "unicode",
+                            "shift-jis"
+                        ],
+                        "description": "文章のエンコードです(default: utf-8)"
+                    },
+                    "vscbouyomi.skipblank":{
+                        "type":"boolean",
+                        "default":false,
+                        "description": "空行を飛ばすかどうかです(default: false)"
+                    }
+                }
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "npm run compile && node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.21",
+        "tslint": "^5.8.0",
+        "@types/node": "^8.10.25",
+        "@types/mocha": "^2.2.42"
+    },
+    "dependencies": {
+        "jschardet": "^1.6.0",
+        "net": "^1.0.2"
+    }
+}
